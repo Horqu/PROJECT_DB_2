@@ -4,13 +4,15 @@ using Microsoft.SqlServer.Server;
 
 [Serializable]
 [SqlUserDefinedAggregate(
-    Format.UserDefined, //use clr serialization to serialize the intermediate result
-    IsInvariantToNulls = true, //optimizer property
-    IsInvariantToDuplicates = false, //optimizer property
-    IsInvariantToOrder = false, //optimizer property
-    MaxByteSize = -1) //maximum size in bytes of persisted value
+    Format.UserDefined,
+    IsInvariantToNulls = true,
+    IsInvariantToDuplicates = false,
+    IsInvariantToOrder = false,
+    MaxByteSize = -1)
 ]
-public class TrendOcen : IBinarySerialize
+
+// Agregat wyznacza współczynnik nachylenia regresji liniowej ocen od czasu, pokazuje trend w ocenach ucznia z danego przedmiotu w czasie
+public class WzrostOcen : IBinarySerialize
 {
     private int liczbaOcen;
     private decimal sumaOcen;
@@ -27,7 +29,7 @@ public class TrendOcen : IBinarySerialize
         this.sumaCzasuKwadrat = 0;
     }
 
-    public void Accumulate(SqlDecimal ocena, SqlDateTime data)
+    public void Accumulate(SqlDecimal ocena, SqlDateTime data, SqlInt32 IdUcznia, SqlInt32 IdPrzedmiotu)
     {
         if (!ocena.IsNull && !data.IsNull)
         {
@@ -39,7 +41,7 @@ public class TrendOcen : IBinarySerialize
         }
     }
 
-    public void Merge(TrendOcen other)
+    public void Merge(WzrostOcen other)
     {
         this.liczbaOcen += other.liczbaOcen;
         this.sumaOcen += other.sumaOcen;
@@ -76,4 +78,5 @@ public class TrendOcen : IBinarySerialize
         w.Write(this.sumaOcenRazyCzas);
         w.Write(this.sumaCzasuKwadrat);
     }
+
 }

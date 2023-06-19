@@ -41,7 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\CLRUDAs\TrendOcen.cs" />
+    <Compile Include="API\CLRUDAs\RozkladOcen.cs" />
+    <Compile Include="API\CLRUDAs\WzrostOcen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -49,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Database\Scripts\Backup.sql" />
+    <Content Include="Database\Scripts\CLRUDA.sql" />
     <Content Include="Database\Scripts\Szkola.sql" />
   </ItemGroup>
   <ItemGroup>
