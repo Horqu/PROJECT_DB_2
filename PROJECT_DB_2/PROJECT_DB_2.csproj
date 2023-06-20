@@ -41,8 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\CLRUDAs\CzestoscPiatki.cs" />
+    <Compile Include="API\CLRUDAs\LiczbaOcenPozNeg.cs" />
+    <Compile Include="API\CLRUDAs\LiczbaOcenWCzasie.cs" />
     <Compile Include="API\CLRUDAs\RozkladOcen.cs" />
-    <Compile Include="API\CLRUDAs\WzrostOcen.cs" />
+    <Compile Include="API\CLRUDAs\SredniaOcenNauczyciela.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
