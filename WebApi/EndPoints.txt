@@ -1,0 +1,21 @@
+http://localhost:5000/api/kurs/1
+
+http://localhost:5000/students
+
+http://localhost:5000/liczbaocen/1/2023-01-01/2023-12-31
+
+http://localhost:5000/kursrozklad/1
+
+http://localhost:5000/nauczyciel/1
+
+http://localhost:5000/liczbaocenpozneg/1
+
+http://localhost:5000/database/clear
+
+POST - http://localhost:5000/Oceny
+{
+    "KursId": 1,
+    "StudentId": 1,
+    "Wartosc": 4.5,
+    "Data": "2023-06-20T00:00:00"
+}

@@ -7,11 +7,11 @@ namespace WebApi.Services
 {
     public class StudentService
     {
-        private readonly SqlConnection _connection;
+        private readonly string _connectionString;
 
-        public StudentService(SqlConnection connection)
+        public StudentService(string connectionString)
         {
-            _connection = connection;
+            _connectionString = connectionString;
         }
 
         public List<Student> GetStudents()
@@ -21,10 +21,11 @@ namespace WebApi.Services
             // Zapytanie SQL do pobrania wszystkich studentów
             string sqlQuery = "SELECT * FROM Studenci";
 
-            using (SqlCommand command = new SqlCommand(sqlQuery, _connection))
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlCommand command = new SqlCommand(sqlQuery, connection))
             {
                 // Otwórz połączenie
-                _connection.Open();
+                connection.Open();
 
                 // Wykonaj zapytanie SQL
                 using (SqlDataReader reader = command.ExecuteReader())
@@ -46,12 +47,12 @@ namespace WebApi.Services
                     }
                 }
 
-                // Zamknij połączenie
-                _connection.Close();
+                // Połączenie zostanie zamknięte automatycznie, gdy wyjdziemy z bloku 'using'
             }
 
             return students;
         }
     }
+
 
 }

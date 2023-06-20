@@ -56,14 +56,6 @@
     <Content Include="Database\Scripts\CLRUDA.sql" />
     <Content Include="Database\Scripts\Szkola.sql" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="API\Controllers\" />
-    <Folder Include="API\Data\" />
-    <Folder Include="API\Models\" />
-    <Folder Include="App\Components\" />
-    <Folder Include="App\Services\" />
-    <Folder Include="App\Views\" />
-    <Folder Include="Test\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
