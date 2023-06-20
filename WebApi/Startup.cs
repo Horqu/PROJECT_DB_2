@@ -27,15 +27,18 @@ namespace WebApi
             //services.AddTransient<KursService>(provider => new KursService(provider.GetRequiredService<SqlConnection>()));
 
             string connectionString = Configuration.GetConnectionString("DefaultConnection");
-            services.AddTransient<StudentService>(provider => new StudentService(connectionString));
+            services.AddTransient<IStudentService>(provider => new StudentService(connectionString));
 
             // dodajemy serwis KursService do kontenera DI
-            services.AddTransient<KursService>(provider => new KursService(connectionString));
-            services.AddTransient<NauczycielService>(provider => new NauczycielService(connectionString));
-            services.AddTransient<KursRozkladService>(provider => new KursRozkladService(connectionString));
-            services.AddTransient<LiczbaOcenService>(provider => new LiczbaOcenService(connectionString));
-            services.AddTransient<LiczbaOcenPozNegService>(provider => new LiczbaOcenPozNegService(connectionString));
-            services.AddTransient<OcenaService>(provider => new OcenaService(connectionString));
+            services.AddTransient<IKursService>(provider => new KursService(connectionString));
+            services.AddTransient<INauczycielService>(provider => new NauczycielService(connectionString));
+            services.AddTransient<IKursRozkladService>(provider => new KursRozkladService(connectionString));
+            services.AddTransient<ILiczbaOcenService>(provider => new LiczbaOcenService(connectionString));
+            services.AddTransient<ILiczbaOcenPozNegService>(provider => new LiczbaOcenPozNegService(connectionString));
+            //services.AddTransient<OcenaService>(provider => new OcenaService(connectionString));
+            services.AddTransient<IOcenaService>(provider => new OcenaService(connectionString));
+
+            //services.AddScoped<IOcenaService, OcenaService>();
             services.AddTransient<DatabaseService>(provider => new DatabaseService(connectionString));
         }
 

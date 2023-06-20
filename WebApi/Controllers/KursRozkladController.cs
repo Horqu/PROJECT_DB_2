@@ -7,9 +7,9 @@ namespace WebApi.Controllers
     [Route("[controller]")]
     public class KursRozkladController : ControllerBase
     {
-        private readonly KursRozkladService _kursRozkladService;
+        private readonly IKursRozkladService _kursRozkladService;
 
-        public KursRozkladController(KursRozkladService kursRozkladService)
+        public KursRozkladController(IKursRozkladService kursRozkladService)
         {
             _kursRozkladService = kursRozkladService;
         }

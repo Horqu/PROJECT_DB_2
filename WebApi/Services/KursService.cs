@@ -5,7 +5,11 @@ using WebApi.Models;
 
 namespace WebApi.Services
 {
-    public class KursService
+    public interface IKursService
+    {
+        public Dictionary<string, string> GetCzestoscPiatkiForKursId(int kursId);
+    }
+    public class KursService : IKursService
     {
         private readonly string _connectionString;
 

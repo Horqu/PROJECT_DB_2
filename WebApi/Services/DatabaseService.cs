@@ -3,7 +3,11 @@ using Microsoft.Data.SqlClient;
 
 namespace WebApi.Services
 {
-    public class DatabaseService
+    public interface IDatabaseService
+    {
+        public void ClearTables();
+    }
+    public class DatabaseService : IDatabaseService
     {
         private readonly string _connectionString;
 

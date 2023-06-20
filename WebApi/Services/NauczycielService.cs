@@ -4,7 +4,11 @@ using Microsoft.Data.SqlClient;
 
 namespace WebApi.Services
 {
-    public class NauczycielService
+    public interface INauczycielService
+    {
+        public Dictionary<string, string> GetNauczycielIdAndSredniaOcen(int nauczycielId);
+    }
+    public class NauczycielService : INauczycielService
     {
         private readonly string _connectionString;
 

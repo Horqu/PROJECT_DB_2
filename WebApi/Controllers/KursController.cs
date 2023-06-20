@@ -5,9 +5,9 @@ using WebApi.Services;
 [ApiController]
 public class KursController : ControllerBase
 {
-    private readonly KursService _kursService;
+    private readonly IKursService _kursService;
 
-    public KursController(KursService kursService)
+    public KursController(IKursService kursService)
     {
         _kursService = kursService;
     }

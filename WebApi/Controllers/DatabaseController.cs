@@ -7,9 +7,9 @@ namespace WebApi.Controllers
     [Route("[controller]")]
     public class DatabaseController : ControllerBase
     {
-        private readonly DatabaseService _databaseService;
+        private readonly IDatabaseService _databaseService;
 
-        public DatabaseController(DatabaseService databaseService)
+        public DatabaseController(IDatabaseService databaseService)
         {
             _databaseService = databaseService;
         }

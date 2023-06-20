@@ -4,7 +4,11 @@ using Microsoft.Data.SqlClient;
 
 namespace WebApi.Services
 {
-    public class KursRozkladService
+    public interface IKursRozkladService
+    {
+        public Dictionary<string, string> GetKursIdAndRozkladOcen(int kursId);
+    }
+    public class KursRozkladService : IKursRozkladService
     {
         private readonly string _connectionString;
 

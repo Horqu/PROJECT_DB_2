@@ -3,7 +3,11 @@ using System;
 
 namespace WebApi.Services
 {
-    public class LiczbaOcenService
+    public interface ILiczbaOcenService
+    {
+        public string GetLiczbaOcen(DateTime startDate, DateTime endDate, int studentId);
+    }
+    public class LiczbaOcenService : ILiczbaOcenService
     {
         private readonly string _connectionString;
 

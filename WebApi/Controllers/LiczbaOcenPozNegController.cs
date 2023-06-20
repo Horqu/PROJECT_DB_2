@@ -7,9 +7,9 @@ namespace WebApi.Controllers
     [Route("[controller]")]
     public class LiczbaOcenPozNegController : ControllerBase
     {
-        private readonly LiczbaOcenPozNegService _service;
+        private readonly ILiczbaOcenPozNegService _service;
 
-        public LiczbaOcenPozNegController(LiczbaOcenPozNegService service)
+        public LiczbaOcenPozNegController(ILiczbaOcenPozNegService service)
         {
             _service = service;
         }

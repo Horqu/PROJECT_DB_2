@@ -4,7 +4,12 @@ using WebApi.Models;
 
 namespace WebApi.Services
 {
-    public class OcenaService
+    public interface IOcenaService
+    {
+        List<Ocena> GetOceny();
+        public void DodajOcene(Ocena nowaOcena);
+    }
+    public class OcenaService : IOcenaService
     {
         private readonly string _connectionString;
 

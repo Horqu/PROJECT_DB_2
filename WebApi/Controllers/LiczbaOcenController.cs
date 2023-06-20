@@ -8,9 +8,9 @@ namespace WebApi.Controllers
     [Route("[controller]")]
     public class LiczbaOcenController : ControllerBase
     {
-        private readonly LiczbaOcenService _service;
+        private readonly ILiczbaOcenService _service;
 
-        public LiczbaOcenController(LiczbaOcenService service)
+        public LiczbaOcenController(ILiczbaOcenService service)
         {
             _service = service;
         }

@@ -5,7 +5,11 @@ using WebApi.Models;
 
 namespace WebApi.Services
 {
-    public class StudentService
+    public interface IStudentService
+    {
+        public List<Student> GetStudents();
+    }
+    public class StudentService : IStudentService
     {
         private readonly string _connectionString;
 

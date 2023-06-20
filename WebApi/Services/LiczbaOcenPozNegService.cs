@@ -4,7 +4,11 @@ using Microsoft.Data.SqlClient;
 
 namespace WebApi.Services
 {
-    public class LiczbaOcenPozNegService
+    public interface ILiczbaOcenPozNegService
+    {
+        public string GetLiczbaOcenPozNeg(int kursId);
+    }
+    public class LiczbaOcenPozNegService : ILiczbaOcenPozNegService
     {
         private readonly string _connectionString;
 
