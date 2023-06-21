@@ -1,0 +1,135 @@
+﻿
+<h2>Dodaj nową ocenę</h2>
+
+<form method="post" action="/Home/DodajOcene">
+    <label for="KursId">Kurs ID:</label><br>
+    <input type="number" id="KursId" name="KursId" min="1" required><br>
+    <label for="StudentId">Student ID:</label><br>
+    <input type="number" id="StudentId" name="StudentId" min="1" required><br>
+    <label for="Wartosc">Wartość oceny:</label><br>
+    <input type="text" id="Wartosc" name="Wartosc" required><br>
+    <label for="Data">Data oceny:</label><br>
+    <input type="date" id="Data" name="Data" required><br>
+    <input type="submit" value="Dodaj ocenę">
+</form>
+
+@model List<Ocena>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>OcenaId</th>
+            <th>Wartosc</th>
+            <th>Data</th>
+            <th>StudentId</th>
+            <th>KursId</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ocena in Model)
+        {
+            <tr>
+                <td>@ocena.OcenaId</td>
+                <td>@ocena.Wartosc</td>
+                <td>@ocena.Data</td>
+                <td>@ocena.StudentId</td>
+                <td>@ocena.KursId</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<form id="iloscPiatek">
+    <input type="number" id="kursId1" name="kursId1">
+    <button type="button" onclick="getKursData()">Ilosc 5.0 w kursie o podanym ID</button>
+</form>
+
+<br>
+
+<form id="iloscOcenWCzasie">
+    <input type="number" id="uczenId2" name="uczenId2">
+    <input type="date" id="Data1" name="Data1" required>
+    <input type="date" id="Data2" name="Data2" required>
+    <button type="button" onclick="getIloscOcenWCzasie()">Ilosc ocen ucznia o podanym ID w czasie</button>
+</form>
+
+<br>
+
+<form id="rozkladOcen">
+    <input type="number" id="kursId3" name="kursId3">
+    <button type="button" onclick="getRozkladOcen()">Procentowy rozkład ocen w kursie o podanym ID</button>
+</form>
+
+<br>
+
+<form id="sredniaNauczyciel">
+    <input type="number" id="nauczycielID" name="nauczycielID">
+    <button type="button" onclick="getSredniaNauczyciela()">Srednia ocen nadanych przez nauczyciela o podanym ID</button>
+</form>
+
+<br>
+
+<form id="iloscPozNeg">
+    <input type="number" id="kursId4" name="kursId4">
+    <button type="button" onclick="getPozNeg()">Ilosc ocen pozytywnych i negatywnych w kursie o podanym ID</button>
+</form>
+
+
+<script>
+    function getKursData() {
+        var kursId = document.getElementById("kursId1").value;
+        var url = "http://localhost:5000/api/kurs/" + kursId;
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                alert(JSON.stringify(data));
+            });
+    }
+
+    function getIloscOcenWCzasie() {
+        var uczenID = document.getElementById("uczenId2").value;
+        var data1 = document.getElementById("Data1").value;
+        var data2 = document.getElementById("Data2").value;
+        var url = "http://localhost:5000/liczbaocen/" + uczenID + "/" + data1 + "/" + data2;
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                alert(JSON.stringify(data));
+            });
+    }
+
+    function getRozkladOcen() {
+        var kursId = document.getElementById("kursId3").value;
+        var url = "http://localhost:5000/kursrozklad/" + kursId;
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                alert(JSON.stringify(data));
+            });
+    }
+
+    function getSredniaNauczyciela() {
+        var nauczycielID = document.getElementById("nauczycielID").value;
+        var url = "http://localhost:5000/nauczyciel/" + nauczycielID;
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                alert(JSON.stringify(data));
+            });
+    }
+
+    function getPozNeg() {
+        var kursId = document.getElementById("kursId4").value;
+        var url = "http://localhost:5000/liczbaocenpozneg/" + kursId;
+
+        fetch(url)
+            .then(response => response.text())
+            .then(data => {
+                alert(data);
+            });
+    }
+</script>
